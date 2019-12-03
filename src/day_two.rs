@@ -5,18 +5,13 @@ pub fn intcode_computer(noun: u32, verb: u32) -> u32 {
 
     loop {
         let instruction = program[instruction_pointer];
+        let first_number: u32 = program[program[instruction_pointer + 1] as usize];
+        let second_number: u32 = program[program[instruction_pointer + 2] as usize];
+        let index = program[instruction_pointer + 3] as usize;
 
         if instruction == 1 {
-            let first_number: u32 = program[program[instruction_pointer + 1] as usize];
-            let second_number: u32 = program[program[instruction_pointer + 2] as usize];
-            let index = program[instruction_pointer + 3] as usize;
-
             program[index] = first_number + second_number;
         } else if instruction == 2 {
-            let first_number: u32 = program[program[instruction_pointer + 1] as usize];
-            let second_number: u32 = program[program[instruction_pointer + 2] as usize];
-            let index = program[instruction_pointer + 3] as usize;
-
             program[index] = first_number * second_number;
         } else if instruction == 99 {
             break;
